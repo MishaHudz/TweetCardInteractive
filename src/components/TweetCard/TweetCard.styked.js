@@ -47,15 +47,30 @@ export const Elipse = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 8px;
-  border: 8px solid #ebd8ff;
-  background: transparent;
+
+  /* border: 8px solid #ebd8ff;
+  background: transparent; */
+
+  background: #ebd8ff;
   box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
     0px 3.4369285106658936px 3.4369285106658936px 0px rgba(0, 0, 0, 0.06),
     0px -1.7184642553329468px 3.4369285106658936px 0px #ae7be3 inset;
   position: absolute;
   top: 178px;
   left: 150px;
+  overflow: hidden;
+`;
+
+export const InnerElipse = styled.div`
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #5736a3;
+
   overflow: hidden;
 `;
 
@@ -67,13 +82,21 @@ export const FollowBtn = styled.button`
   border: 0;
   text-transform: uppercase;
   border-radius: 10px;
-  background-color: EBD8FF;
+
   cursor: pointer;
+  font-weight: 600;
+  transition: box-shadow 0.3s, transform 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+  }
 `;
 
 export const StatisticsList = styled.ul`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
   margin-bottom: 26px;
   text-transform: uppercase;

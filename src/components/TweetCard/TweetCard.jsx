@@ -1,16 +1,19 @@
+import { useState } from 'react';
+import { putTweet } from 'services/tweetsAPI';
 import {
   Elipse,
   FollowBtn,
   HorizontalLine,
+  InnerElipse,
   ItemTopTweetImg,
   StatisticsList,
   TweetListItem,
   TweetLogoImg,
 } from './TweetCard.styked';
+
 import TopTweetImg from '../../images/top-tweet-card-img.png';
 import GoItLogo from '../../images/GoIt-Logo.png';
-import { putTweet } from 'services/tweetsAPI';
-import { useState } from 'react';
+import DefaultUser from '../../images/Default-User-Img.png';
 
 function TweetCard({
   Tweet: { id, avatar, followers, tweets, user },
@@ -51,7 +54,14 @@ function TweetCard({
       <TweetLogoImg src={GoItLogo} alt="Go It Logo" />
       <HorizontalLine />
       <Elipse>
-        <img width="62px" height="62px" src={avatar} alt="" />
+        <InnerElipse>
+          <img
+            width="62px"
+            height="62px"
+            src={avatar ? avatar : DefaultUser}
+            alt="User"
+          />
+        </InnerElipse>
       </Elipse>
       <ItemTopTweetImg src={TopTweetImg} alt="question mark and check mark" />
 
@@ -67,7 +77,12 @@ function TweetCard({
           </p>
         </li>
       </StatisticsList>
-      <FollowBtn onClick={onSubscribeBtnClick}>
+      <FollowBtn
+        onClick={onSubscribeBtnClick}
+        style={{
+          backgroundColor: `${Following.includes(id) ? '#5CD3A8' : '#ebd8ff'}`,
+        }}
+      >
         {Following.includes(id) ? 'following' : 'follow'}
       </FollowBtn>
     </TweetListItem>
