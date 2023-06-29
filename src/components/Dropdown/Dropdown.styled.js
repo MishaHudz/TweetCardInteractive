@@ -28,13 +28,17 @@ export const DropdownBtn = styled.button`
 `;
 
 export const DropdownContent = styled.ul`
-  height: 40px;
+  /* height: 40px; */
   display: flex;
+  flex-direction: column;
+  z-index: 1;
   gap: 10px;
   position: absolute;
-  top: 0;
-  left: 90px;
-  padding: 0 10px;
+
+  top: 40px;
+  left: 0px;
+
+  padding: 10px 10px;
   border-radius: 10px;
   background: #ebd8ff;
   box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
@@ -46,13 +50,17 @@ export const DropdownItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid black;
+  }
 `;
 
 export const DropdownItemBtn = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: 0;
-  font-size: 18px;
+  font-size: 15px;
 
   &:hover,
   &:focus {

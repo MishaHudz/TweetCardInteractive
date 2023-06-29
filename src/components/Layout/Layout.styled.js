@@ -11,7 +11,7 @@ export const Header = styled.header`
   align-items: center;
   width: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
 
   background: #ebd8ff;
   box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
@@ -31,7 +31,10 @@ export const NavigationLink = styled(NavLink)`
   padding: 10px;
   background-color: #ebd8ff;
   border-radius: 10px;
-  border: 2px solid white;
+
+  box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
+    0px 3.4369285106658936px 3.4369285106658936px 0px rgba(0, 0, 0, 0.06),
+    0px -1.7184642553329468px 3.4369285106658936px 0px #ae7be3 inset;
   transition: box-shadow 0.3s, transform 0.3s;
   &.active {
     border: 0px;

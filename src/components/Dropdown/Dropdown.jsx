@@ -16,11 +16,17 @@ function Dropdown({ setFilter }) {
 
   const onFilterItemClick = evt => {
     setFilter(evt.target.innerText);
+    setIsOpen(false);
   };
 
   return (
     <DropdownContainer>
-      <DropdownBtn onClick={onDropdownBtnClick}>Filter</DropdownBtn>
+      <DropdownBtn
+        onClick={onDropdownBtnClick}
+        style={{ background: `${isOpen ? '#5cd3a8' : ''}` }}
+      >
+        Filter
+      </DropdownBtn>
       {isOpen && (
         <DropdownContent>
           <DropdownItem>

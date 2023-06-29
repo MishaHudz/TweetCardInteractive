@@ -9,5 +9,6 @@ export async function getAllTweets() {
 
 export async function putTweet(id, dataObj) {
   const { data } = await axios.put(`/tweets/${id}`, dataObj);
+
   return data;
 }
