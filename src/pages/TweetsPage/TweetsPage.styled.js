@@ -3,12 +3,28 @@ import styled from 'styled-components';
 export const TweetsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  column-gap: 30px;
-  row-gap: 15px;
+
+  row-gap: 8px;
+
+  @media (min-width: 768px) {
+    column-gap: 8px;
+  }
+
+  @media (min-width: 1280px) {
+    column-gap: 30px;
+    row-gap: 15px;
+  }
 `;
 
 export const TweetsSection = styled.section`
-  width: 1200px;
+  width: 320px;
+  @media (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 1200px;
+  }
 `;
 
 export const TweetsPageNavigateContainer = styled.div`

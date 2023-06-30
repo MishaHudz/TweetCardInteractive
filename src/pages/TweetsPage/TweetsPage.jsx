@@ -8,10 +8,13 @@ import {
 } from './TweetsPage.styled';
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import Dropdown from 'components/Dropdown/Dropdown';
+import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
 
 function TweetsPage() {
   const [tweets, setTweets] = useState(null);
   const [filter, setFilter] = useState('All');
+  const [page, setPage] = useState(1);
+  const [activeBtn, setActiveBtn] = useState(true);
   const [following, setFollowing] = useState(
     () => JSON.parse(localStorage.getItem('followingArr')) ?? []
   );
@@ -28,18 +31,18 @@ function TweetsPage() {
     }
   };
 
-  const setTwettsFromApi = async () => {
-    const data = await getAllTweets();
-    setTweets(data);
-  };
-
   useEffect(() => {
     localStorage.setItem('followingArr', JSON.stringify(following));
   }, [following]);
 
   useEffect(() => {
+    const setTwettsFromApi = async () => {
+      const data = await getAllTweets(page);
+      setTweets(prev => (prev ? [...prev, ...data] : data));
+      if (data.length < 3) setActiveBtn(false);
+    };
     setTwettsFromApi();
-  }, []);
+  }, [page]);
 
   return (
     <TweetsSection>
@@ -58,6 +61,7 @@ function TweetsPage() {
             />
           ))}
       </TweetsList>
+      {activeBtn && <LoadMoreBtn setPage={setPage} />}
     </TweetsSection>
   );
 }

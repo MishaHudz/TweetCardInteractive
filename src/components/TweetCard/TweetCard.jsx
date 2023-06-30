@@ -49,6 +49,14 @@ function TweetCard({
     setFollowersAmount(prev => +prev + 1);
   };
 
+  const addSignForFollowers = followersdata => {
+    const hundreds = followersdata % 1000;
+    const thousands = Math.floor(followersdata / 1000);
+
+    console.log(thousands, hundreds);
+    return thousands ? `${thousands},${hundreds}` : followersdata;
+  };
+
   return (
     <TweetListItem>
       <TweetLogoImg src={GoItLogo} alt="Go It Logo" />
@@ -73,7 +81,7 @@ function TweetCard({
         </li>
         <li>
           <p>
-            <span>{followersAmount}</span> followers
+            <span>{addSignForFollowers(followersAmount)}</span> followers
           </p>
         </li>
       </StatisticsList>
