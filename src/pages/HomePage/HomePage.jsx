@@ -1,5 +1,11 @@
+import { HomePageSection } from './HomePage.styled';
+
 function HomePage() {
-  return <div>Home page</div>;
+  return (
+    <HomePageSection>
+      <h1>Home page</h1>
+    </HomePageSection>
+  );
 }
 
 export default HomePage;

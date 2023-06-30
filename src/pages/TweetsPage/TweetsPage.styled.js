@@ -17,6 +17,7 @@ export const TweetsList = styled.ul`
 `;
 
 export const TweetsSection = styled.section`
+  min-height: 100vh;
   width: 320px;
   @media (min-width: 768px) {
     width: 768px;

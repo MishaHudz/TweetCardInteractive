@@ -16,7 +16,7 @@ function TweetsPage() {
   const [tweets, setTweets] = useState(null);
   const [filter, setFilter] = useState('All');
   const [page, setPage] = useState(1);
-  const [activeBtn, setActiveBtn] = useState(true);
+  const [activeBtn, setActiveBtn] = useState(false);
   const [following, setFollowing] = useState(
     () => JSON.parse(localStorage.getItem('followingArr')) ?? []
   );
@@ -44,6 +44,8 @@ function TweetsPage() {
       if (data.length < 3) {
         setActiveBtn(false);
         toast.info('You have reached the end of the list!');
+      } else {
+        setActiveBtn(true);
       }
     };
     setTwettsFromApi();
