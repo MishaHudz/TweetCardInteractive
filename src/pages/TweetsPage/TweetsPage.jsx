@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import TweetCard from 'components/TweetCard/TweetCard';
 import { useEffect, useState } from 'react';
 import { getAllTweets } from 'services/tweetsAPI';
@@ -9,6 +10,7 @@ import {
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import Dropdown from 'components/Dropdown/Dropdown';
 import LoadMoreBtn from 'components/LoadMoreBtn/LoadMoreBtn';
+import { ToastContainer, toast } from 'react-toastify';
 
 function TweetsPage() {
   const [tweets, setTweets] = useState(null);
@@ -39,7 +41,10 @@ function TweetsPage() {
     const setTwettsFromApi = async () => {
       const data = await getAllTweets(page);
       setTweets(prev => (prev ? [...prev, ...data] : data));
-      if (data.length < 3) setActiveBtn(false);
+      if (data.length < 3) {
+        setActiveBtn(false);
+        toast.info('You have reached the end of the list!');
+      }
     };
     setTwettsFromApi();
   }, [page]);
@@ -62,6 +67,7 @@ function TweetsPage() {
           ))}
       </TweetsList>
       {activeBtn && <LoadMoreBtn setPage={setPage} />}
+      <ToastContainer />
     </TweetsSection>
   );
 }

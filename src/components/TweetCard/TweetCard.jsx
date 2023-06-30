@@ -21,6 +21,7 @@ function TweetCard({
   SetFollowing,
 }) {
   const [followersAmount, setFollowersAmount] = useState(followers);
+  const [userShow, setUserShow] = useState(false);
 
   const onSubscribeBtnClick = () => {
     if (Following.includes(id)) {
@@ -55,11 +56,15 @@ function TweetCard({
     return thousands ? `${thousands},${hundreds}` : followersdata;
   };
 
+  const userSowChange = () => {
+    setUserShow(prev => !prev);
+  };
+
   return (
     <TweetListItem>
       <TweetLogoImg src={GoItLogo} alt="Go It Logo" />
       <HorizontalLine />
-      <Elipse>
+      <Elipse onMouseEnter={userSowChange} onMouseLeave={userSowChange}>
         <InnerElipse>
           <img
             width="62px"
@@ -72,11 +77,22 @@ function TweetCard({
       <ItemTopTweetImg src={TopTweetImg} alt="question mark and check mark" />
 
       <StatisticsList>
-        <li>
-          <p>
-            <span>{tweets}</span> tweets
-          </p>
-        </li>
+        {userShow && (
+          <li>
+            <p>
+              <span>{user}</span> User
+            </p>
+          </li>
+        )}
+
+        {!userShow && (
+          <li>
+            <p>
+              <span>{tweets}</span> tweets
+            </p>
+          </li>
+        )}
+
         <li>
           <p>
             <span>{addSignForFollowers(followersAmount)}</span> followers
