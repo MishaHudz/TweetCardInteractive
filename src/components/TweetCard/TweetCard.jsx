@@ -52,8 +52,6 @@ function TweetCard({
   const addSignForFollowers = followersdata => {
     const hundreds = followersdata % 1000;
     const thousands = Math.floor(followersdata / 1000);
-
-    console.log(thousands, hundreds);
     return thousands ? `${thousands},${hundreds}` : followersdata;
   };
 

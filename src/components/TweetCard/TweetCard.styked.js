@@ -20,6 +20,21 @@ export const TweetListItem = styled.li`
   @media (min-width: 768px) {
     width: 380px;
   }
+
+  opacity: 0;
+  transform: scale(0);
+  animation: scale-in 0.8s ease-in-out forwards;
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 `;
 
 export const ItemTopTweetImg = styled.img`
