@@ -39,13 +39,17 @@ function TweetsPage() {
 
   useEffect(() => {
     const setTwettsFromApi = async () => {
-      const data = await getAllTweets(page);
-      setTweets(prev => (prev ? [...prev, ...data] : data));
-      if (data.length < 3) {
-        setActiveBtn(false);
-        toast.info('You have reached the end of the list!');
-      } else {
-        setActiveBtn(true);
+      try {
+        const data = await getAllTweets(page);
+        setTweets(prev => (prev ? [...prev, ...data] : data));
+        if (data.length < 3) {
+          setActiveBtn(false);
+          toast.info('You have reached the end of the list!');
+        } else {
+          setActiveBtn(true);
+        }
+      } catch {
+        toast.error('Network Error!');
       }
     };
     setTwettsFromApi();

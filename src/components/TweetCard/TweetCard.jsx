@@ -14,6 +14,7 @@ import {
 import TopTweetImg from '../../images/top-tweet-card-img.png';
 import GoItLogo from '../../images/GoIt-Logo.png';
 import DefaultUser from '../../images/Default-User-Img.png';
+import { toast } from 'react-toastify';
 
 function TweetCard({
   Tweet: { id, avatar, followers, tweets, user },
@@ -23,31 +24,37 @@ function TweetCard({
   const [followersAmount, setFollowersAmount] = useState(followers);
   const [userShow, setUserShow] = useState(false);
 
-  const onSubscribeBtnClick = () => {
+  const onSubscribeBtnClick = async () => {
     if (Following.includes(id)) {
-      SetFollowing(prevstate => prevstate.filter(el => el !== id));
+      try {
+        await putTweet(id, {
+          id,
+          avatar,
+          user,
+          tweets,
+          followers: +followersAmount - 1,
+        });
+        SetFollowing(prevstate => prevstate.filter(el => el !== id));
+        setFollowersAmount(prev => +prev - 1);
+      } catch {
+        toast.error('Network Error!');
+      }
+      return;
+    }
 
-      putTweet(id, {
+    try {
+      await putTweet(id, {
         id,
         avatar,
         user,
         tweets,
-        followers: +followersAmount - 1,
+        followers: +followersAmount + 1,
       });
-      setFollowersAmount(prev => +prev - 1);
-      return;
+      SetFollowing(prevstate => [...prevstate, id]);
+      setFollowersAmount(prev => +prev + 1);
+    } catch {
+      toast.error('Network Error!');
     }
-
-    SetFollowing(prevstate => [...prevstate, id]);
-
-    putTweet(id, {
-      id,
-      avatar,
-      user,
-      tweets,
-      followers: +followersAmount + 1,
-    });
-    setFollowersAmount(prev => +prev + 1);
   };
 
   const addSignForFollowers = followersdata => {
