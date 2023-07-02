@@ -24,10 +24,14 @@ function HomePage() {
           Explore <br /> Tweets
         </HomePageHeader>
         <HomePageDescription>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi eius
-          minus consectetur dolores cum. Obcaecati, voluptatem voluptates rerum
-          ut velit, veniam eos temporibus pariatur aliquam, nobis aliquid ea
-          voluptate? Labore?
+          Welcome to our website, where you will find a convenient tool for
+          tracking users' activity on Twitter. Our platform allows you to follow
+          users, displaying their username, tweet count, and followers. You can
+          also add specific users to your watchlist to stay updated on their
+          activity. With these features, you can effectively manage your Twitter
+          experience and receive important information about the users that
+          interest you. Join us today and enjoy the convenience of tracking
+          users' tweets!
         </HomePageDescription>
         <TweetsLink to="/tweets">Tweets</TweetsLink>
       </div>
